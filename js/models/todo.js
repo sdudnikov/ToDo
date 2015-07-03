@@ -1,11 +1,11 @@
 
-Todo.Todos = DS.Model.extend({
+Todo.TodosModel = DS.Model.extend({
   title: DS.attr('string'),
   isCompleted: DS.attr('boolean')
 });
 
 
-Todo.Todos.FIXTURES = [
+Todo.TodosModel.FIXTURES = [
  {
    id: 1,
    title: 'Learn Ember.js',

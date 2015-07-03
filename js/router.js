@@ -3,21 +3,22 @@
 Todo.Router.map(function() {
   this.resource('todos', { path: '/' }, function () {
   this.route('active');
+  this.route('completed');
   });
 });
 
 Todo.TodosRoute = Ember.Route.extend({
   model: function() {
-    return this.store.find('todos');  //не зависит от регистра (model name is Todos)
+    return this.store.find('todosModel');  //не зависит от регистра (model name is TodosModel)
   }
 });
+
 
 Todo.TodosIndexRoute = Ember.Route.extend({
   model: function() {
-    return this.modelFor('todos');
+    return this.modelFor('todos');  
   }
 });
-
 
 Todo.TodosActiveRoute = Ember.Route.extend({
   model: function(){
@@ -29,3 +30,18 @@ Todo.TodosActiveRoute = Ember.Route.extend({
     this.render('todos/index', {controller: controller});
   }
 });
+
+Todo.TodosCompletedRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.filter('TodosModel', function(todo) {  // можно использовать модель (TodosModel)
+      return todo.get('isCompleted');
+    });
+  },
+  renderTemplate: function(controller) {
+    this.render('todos/index', {controller: controller});
+  }
+});
+
+
+
+
