@@ -22,7 +22,7 @@
       <ul id="todo-list">
       {{#each todo in model}}
          <li {{bind-attr class="todo.isCompleted:completed"}}>
-           <input type="checkbox" class="toggle">
+            {{input type="checkbox" checked=todo.isCompleted class="toggle"}}
       	   <label>{{todo.title}}</label><button class="destroy"></button>
     	 </li>
       {{/each}}
@@ -33,8 +33,8 @@
 
       <footer id="footer">
         <span id="todo-count">
-          <strong>2</strong> todos left
-        </span>
+  	  <strong>{{remaining}}</strong> {{inflection}} left
+	</span>
         <ul id="filters">
           <li>
             <a href="all" class="selected">All</a>
@@ -67,5 +67,6 @@
    <script src="js/router.js"></script>
    <script src="js/models/todo.js"></script>
    <script src="js/controllers/todos_controller.js"></script>
+   <script src="js/controllers/todo_controller.js"></script>
   </body>
 </html>
